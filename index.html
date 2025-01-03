@@ -15,9 +15,9 @@
         <div class="row text-center mb-5">
             <h2>Divisor de Gastos</h2>
         </div>
-        <h3>Total: $
+        <h1 class="text-end px-2 mx-5">$
             <span id="total">0</span>
-        </h3>
+        </h1>
         <h2 class="px-3">Personas</h2>
 
         <table class="table" id="listado">
@@ -30,32 +30,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="align-middle">
-                    <td>Matias</td>
-                    <td>Helado</td>
-                    <td>$ 13000</td>
-                    <td>
-                        <button class="btn btn-outline-danger btn-delete"><i class="bi bi-trash"></i></button>
-                    </td>
-                </tr>
             </tbody>
         </table>
 
 
         <div class="row mx-2 d-flex justify-content-center" id="formulario">
             <div class="col-10 col-sm-5 col-md-6 col-lg-4 mt-1">
-                <div class="input-group">
+                <!-- si quiero inputs mas chicos, usar input-group como clase y eliminar labels -->
+                <div class="form-floating">
                     <input type="text" class="form-control nombre"  placeholder="nombre">
+                    <label>Nombre</label>
                 </div>
             </div>
             <div class="col-10 col-sm-5 col-md-6 col-lg-4 mt-1">
-                <div class="input-group">
+                <div class="form-floating">
                     <input type="text" class="form-control categoria" placeholder="categoria/s">
+                    <label>Categoria/s</label>
                 </div>
             </div>
             <div class="col-10 col-sm-5 col-md-6 col-lg-4 mt-1">
-                <div class="input-group">
+                <div class="form-floating">
                     <input type="number" class="form-control monto"  id="monto" placeholder="monto">
+                    <label>Monto</label>
                 </div>
             </div>
         </div>
@@ -66,8 +62,11 @@
         </div>
         <div class="row mt-3">
             <div class="col d-flex justify-content-center">
-                <button type="button" class="btn btn-outline-success" id="btnAgregarPersona"><i class="bi bi-plus-circle">&ensp;Agregar persona</i></button>
+                <button type="button" class="btn btn-outline-success py-2" id="btnAgregarPersona"><i class="bi bi-plus-circle">&ensp;Agregar persona</i></button>
             </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btn btn-outline-warning py-2" id="btnCalcular"><i class="bi bi-calculator-fill"></i>&ensp;Calcular</i></button>
         </div>
     </div>
 

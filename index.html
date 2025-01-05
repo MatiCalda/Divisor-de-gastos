@@ -11,12 +11,16 @@
 </head>
 
 <body data-bs-theme="dark">
-    <div class="container pt-4">
+    <div class="sticky-top  d-flex justify-content-end m-3">
+        <button class="btn" id="themeIcon">
+        </button>
+    </div>
+    <div class="container" id="inicio">
         <div class="row text-center mb-5">
-            <h2>Divisor de Gastos</h2>
+            <p class="fs-1">💰 Divisor de Gastos</p>
         </div>
         <h1 class="text-end px-2 mx-5">$
-            <span id="total">0</span>
+            <span id="total">0</span> 
         </h1>
         <h2 class="px-3">Personas</h2>
 
@@ -24,9 +28,9 @@
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
-                    <th scope="col">categoria</th>
+                    <th scope="col">Categoria</th>
                     <th scope="col">Monto</th>
-                    <th scope="col"><i class="bi bi-trash"></i></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -50,14 +54,9 @@
             </div>
             <div class="col-10 col-sm-5 col-md-6 col-lg-4 mt-1">
                 <div class="form-floating">
-                    <input type="number" class="form-control monto"  id="monto" placeholder="monto">
+                    <input type="number" class="form-control monto" min="0" id="monto" placeholder="monto">
                     <label>Monto</label>
                 </div>
-            </div>
-        </div>
-        <div class="row mt-3 visually-hidden">
-            <div class="col d-flex justify-content-center">
-                <button type="button" class="btn btn-outline-warning" id="btnAgregarCategoria"><i class="bi bi-plus-circle">&ensp;Agregar categoria</i></button>
             </div>
         </div>
         <div class="row mt-3">
@@ -66,7 +65,47 @@
             </div>
         </div>
         <div class="d-flex justify-content-center mt-3">
-            <button type="button" class="btn btn-outline-warning py-2" id="btnCalcular"><i class="bi bi-calculator-fill"></i>&ensp;Calcular</i></button>
+            <a href="#gastos" type="button" class="btn btn-outline-warning py-2" id="btnCalcular"><i class="bi bi-calculator-fill"></i>&ensp;Calcular</i></a>
+        </div>
+
+        <div class="visually-hidden mt-5" id="resultados">
+            <h3 class="text-end px-2 mx-5">
+            <span>$ </span>
+            <span id="cu"></span>
+            <span> c/u</span>
+            </h3>
+            <table class="table" id="gastos">
+                <thead>
+                    <tr>
+                        <th scope="col">Persona</th>
+                        <th scope="col">Debe a</th>
+                        <th scope="col">Monto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center my-5">
+                <a href="#inicio" type="button" class="btn btn-outline-primary py-2" id="btnNewCalc">
+                    <i class="bi bi-arrow-counterclockwise"></i>&ensp;Nueva Cuenta</i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="modalWarning">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aviso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalmsg"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>
 

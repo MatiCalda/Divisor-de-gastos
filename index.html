@@ -16,7 +16,7 @@
             <h2>Divisor de Gastos</h2>
         </div>
         <h1 class="text-end px-2 mx-5">$
-            <span id="total">0</span>
+            <span id="total">0</span> 
         </h1>
         <h2 class="px-3">Personas</h2>
 
@@ -30,6 +30,34 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- datos de prueba - eliminar en produccion -->
+                <!-- <tr class="persona">
+                    <td class="nombre">Juani</td>
+                    <td>Para la Pizza</td>
+                    <td>
+                        <span>$ </span>
+                        <span class="monto">23000</span>
+                    </td>
+                <tr>
+                    
+                    <tr class="persona">
+                        <td class="nombre">Nico</td>
+                        <td>Hielo</td>
+                        <td>
+                            <span>$ </span>
+                            <span class="monto">4000</span>
+                        </td>
+                        <tr>
+                    
+                <tr class="persona">
+                    <td class="nombre">Calda</td>
+                    <td>Helado</td>
+                    <td>
+                        <span>$ </span>
+                        <span class="monto">13000</span>
+                    </td>
+                <tr> -->
+                <!-- fin datos de prueba -->
             </tbody>
         </table>
 
@@ -66,7 +94,43 @@
             </div>
         </div>
         <div class="d-flex justify-content-center mt-3">
-            <button type="button" class="btn btn-outline-warning py-2" id="btnCalcular"><i class="bi bi-calculator-fill"></i>&ensp;Calcular</i></button>
+            <a href="#gastos" type="button" class="btn btn-outline-warning py-2" id="btnCalcular"><i class="bi bi-calculator-fill"></i>&ensp;Calcular</i></a>
+        </div>
+
+        <div class="visually-hidden" id="resultados">
+            <h3>
+            <span>$ </span>
+            <span id="cu"></span>
+            <span> c/u</span>
+            </h3>
+            <table class="table" id="gastos">
+                <thead>
+                    <tr>
+                        <th scope="col">Persona</th>
+                        <th scope="col">Debe a</th>
+                        <th scope="col">Monto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="modalWarning">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aviso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Aun hay datos sin guardar</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>
 

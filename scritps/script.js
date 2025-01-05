@@ -150,6 +150,7 @@ function getGastos() {
         let gasto = {
             nombre: persona.querySelector('.nombre').textContent,
             monto: parseFloat(persona.querySelector('.monto').textContent)
+            monto: parseFloat(persona.querySelector('.monto').textContent)
         }
         gastos.push(gasto);
     });

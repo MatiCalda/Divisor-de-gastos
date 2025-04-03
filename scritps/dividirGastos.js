@@ -1,9 +1,10 @@
 "use strict";
 var input = document.getElementById('monto');
-const btnTheme = document.getElementById('themeIcon')
+
 const btnAgregar = document.getElementById('btnAgregarPersona')
 const btnCalcular = document.getElementById('btnCalcular')
 const btnNuevoCalculo = document.getElementById('btnNewCalc')
+
 const formulario = document.getElementById('formulario')
 const listado = document.getElementById('listado').querySelector('tbody');
 
@@ -14,21 +15,6 @@ const monto = formulario.querySelector('.monto');
 var modalWarning = new bootstrap.Modal('#modalWarning')
 var msgMotal = document.querySelector('#modalmsg')
 
-document.addEventListener('DOMContentLoaded', () => { 
-    const savedTheme = localStorage.getItem('theme') || 'dark'; 
-    switch (savedTheme) {
-        case 'dark':
-            changeButtonsToDark();
-            break;
-        case 'light':
-            changeButtonsToLight();
-            break;
-        default:
-            break;
-    }
-    document.querySelector('body').setAttribute('data-bs-theme', savedTheme) 
-});
-
 input.addEventListener("keypress", function (event) {
     // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
@@ -38,20 +24,6 @@ input.addEventListener("keypress", function (event) {
         btnAgregar.click();
     }
 });
-
-btnTheme.addEventListener('click', () => {
-    let theme
-    if (btnTheme.className.includes('btn-dark')){ // estoy en modo dark y quiero pasar a light
-        document.querySelector('body').setAttribute('data-bs-theme', 'light')
-        changeButtonsToLight();
-        theme = 'light'
-    } else if (btnTheme.className.includes('btn-light')){ // estoy en modo dark y quiero pasar a light
-        document.querySelector('body').setAttribute('data-bs-theme', 'dark')
-        changeButtonsToDark();
-        theme = 'dark'
-    }
-    localStorage.setItem('theme', theme);
-})
 
 btnAgregar.addEventListener('click', () => {
     if (datosValidos()) {
@@ -73,7 +45,7 @@ btnAgregar.addEventListener('click', () => {
         btnDelete.addEventListener('click', () => {
             const item = btnDelete.parentElement.parentElement;
             let monto = item.querySelector('.monto').textContent;
-    
+
             actualizarTotal(-monto);
             listado.removeChild(item);
         });
@@ -83,7 +55,7 @@ btnAgregar.addEventListener('click', () => {
         actualizarTotal(monto.value);
         nombre.value = categoria.value = monto.value = '';
         nombre.focus();
-    }else{
+    } else {
         modalWarning.show();
     }
 });
@@ -93,8 +65,8 @@ btnCalcular.addEventListener('click', () => {
     if (nombre.value || categoria.value || monto.value) {
         msgMotal.textContent = 'Aun hay datos sin guardar'
         modalWarning.show()
-    }else if(total != 0){
-        
+    } else if (total != 0) {
+
         let gastos = getGastos().sort((a, b) => b.monto - a.monto);
         let cantPersonas = gastos.length;
         let maxGasto = gastos[0].monto;
@@ -115,8 +87,8 @@ btnCalcular.addEventListener('click', () => {
                 })
             } else {
                 let debe = [];
-                for (let j = 0; j < i; j++) { 
-                    if (gastos[j].montoPPersona > gastos[i].montoPPersona){
+                for (let j = 0; j < i; j++) {
+                    if (gastos[j].montoPPersona > gastos[i].montoPPersona) {
                         let pago = {
                             nombre: gastos[j].nombre,
                             monto: gastos[j].montoPPersona - gastos[i].montoPPersona
@@ -129,16 +101,16 @@ btnCalcular.addEventListener('click', () => {
                     debe: debe
                 });
             }
-            
+
         }
-    
+
         renderGastos(pagos.reverse())
 
     }
-    
+
 });
 
-btnNuevoCalculo.addEventListener('click', () =>{
+btnNuevoCalculo.addEventListener('click', () => {
     document.getElementById('total').textContent = '0';
     document.getElementById('resultados').classList.add('visually-hidden');
     listado.innerHTML = '';
@@ -156,7 +128,7 @@ function getGastos() {
     return gastos;
 }
 
-function renderGastos(gastos){
+function renderGastos(gastos) {
     document.getElementById('resultados').classList.remove('visually-hidden');
 
     const tabla = document.getElementById('gastos').querySelector('tbody');
@@ -186,29 +158,7 @@ function actualizarTotal(monto) {
     document.getElementById('total').textContent = total.toFixed(2);
 }
 
-function changeButtonsToDark(){
-    btnTheme.className = 'btn btn-dark'
-    btnTheme.innerHTML = '<i class="bi bi-moon"></i>'
-    btnAgregar.classList.remove('btn-success')
-    btnCalcular.classList.remove('btn-warning')
-    btnNuevoCalculo.classList.remove('btn-primary')
-    btnAgregar.classList.add('btn-outline-success')
-    btnCalcular.classList.add('btn-outline-warning')
-    btnNuevoCalculo.classList.add('btn-outline-primary')
-}
-
-function changeButtonsToLight(){
-    btnTheme.className = 'btn btn-light'
-    btnTheme.innerHTML = '<i class="bi bi-sun"></i>'
-    btnAgregar.classList.remove('btn-outline-success')
-    btnCalcular.classList.remove('btn-outline-warning')
-    btnNuevoCalculo.classList.remove('btn-outline-primary')
-    btnAgregar.classList.add('btn-success')
-    btnCalcular.classList.add('btn-warning')
-    btnNuevoCalculo.classList.add('btn-primary')
-}
-
-function datosValidos(){
+function datosValidos() {
     let todoOk = false;
     let nombres = []
     document.querySelectorAll('.nombre').forEach(nombre => {
@@ -216,11 +166,11 @@ function datosValidos(){
     })
     if (!nombre.value || !monto.value) {
         msgMotal.textContent = 'Falta ingresar valores'
-    }else if (nombres.includes(nombre.value.toLowerCase().trim())) {
+    } else if (nombres.includes(nombre.value.toLowerCase().trim())) {
         msgMotal.textContent = 'Este nombre ya fue ingresado'
     } else if (monto.value < 0) {
         msgMotal.textContent = 'El monto no puede ser negativo'
-    }else{
+    } else {
         todoOk = true;
     }
     return todoOk;
